@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  namespace: comical-site
+  name: comical-site-ingress
+  annotations:
+    kubernetes.io/ingress.class: "nginx"    
+spec:
+  rules:
+  - host: demo.site
+    http:
+      paths:
+      - backend:
+          serviceName: comical-site-app
+          servicePort: 80

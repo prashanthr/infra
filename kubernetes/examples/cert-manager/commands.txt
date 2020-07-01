@@ -1,0 +1,115 @@
+# Setup & Pre-reqs
+# export KUBECONFIG=[FULL_PATH_TO_KUBECONFIG_FILE]
+# Install Helm on client
+# brew install helm
+# export KUBE_DEPLOY_BASE_PATH=[FULL_PATH_TO_DEPLOY_FOLDER]
+# export KUBE_NAMESPACE=[YOUR_NAMESPACE]
+
+# Helm setup
+
+# Add the Jetstack Helm repository
+helm repo add jetstack https://charts.jetstack.io
+
+# Update your local Helm chart repository cache
+helm repo update
+
+# Deployment
+
+# Create Namespace
+kubectl apply -f $KUBE_DEPLOY_BASE_PATH/namespace
+
+## Uninstall a previous cert-manager if installed
+# helm uninstall cert-manager --namespace [old-namespace]
+
+# Install cert manager helm chart
+helm install \
+  cert-manager jetstack/cert-manager \
+  --namespace $KUBE_NAMESPACE \
+  --version v0.15.1 \
+  -f $KUBE_DEPLOY_BASE_PATH/cert-manager/values.yaml \
+  --set installCRDs=true
+  
+# Application
+kubectl apply -f $KUBE_DEPLOY_BASE_PATH/deployment
+
+# Let's encrypt issuer staging
+kubectl apply -f $KUBE_DEPLOY_BASE_PATH/cluster-issuer/staging
+
+# Ingress
+kubectl apply -f $KUBE_DEPLOY_BASE_PATH/ingress
+
+# Certificate
+kubectl apply -f $KUBE_DEPLOY_BASE_PATH/certificate
+
+# Validation
+kubectl --namespace $KUBE_NAMESPACE describe ingress
+kubectl --namespace $KUBE_NAMESPACE describe certificate
+kubectl --namespace $KUBE_NAMESPACE get services
+kubectl --namespace $KUBE_NAMESPACE get pods
+# kubectl --namespace $KUBE_NAMESPACE logs [POD_NAME]
+
+## New stuff
+
+# Namespace
+kubectl apply -f $KUBE_DEPLOY_BASE_PATH/namespace
+
+# Application
+kubectl apply -f $KUBE_DEPLOY_BASE_PATH/deployment
+
+# Ingress nginx
+# kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/mandatory.yaml
+# kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/cloud-generic.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/do/deploy.yaml
+
+# Check
+kubectl --namespace ingress-nginx  get services
+
+# Nginx Ingress
+# kubectl apply -f $KUBE_DEPLOY_BASE_PATH/ingress/nginx-ingress.yaml
+
+# Setup DNS A record to point to the do ingress
+# WAIT TO VERIFY NGINX 503
+
+# Service Ingress
+kubectl apply -f $KUBE_DEPLOY_BASE_PATH/ingress/service-ingress-initial.yaml
+
+# Verify by curling site to get HTTP response
+
+# Cert manager
+kubectl create namespace cert-manager
+#kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v0.12.0/cert-manager.yaml
+helm install \
+  cert-manager jetstack/cert-manager \
+  --namespace cert-manager \
+  --version v0.15.1 \
+  --set installCRDs=true
+
+# Test cert manager
+kubectl apply -f $KUBE_DEPLOY_BASE_PATH/cert-manager/test-cert-manager.yaml
+kubectl describe certificate -n cert-manager-test
+# If Ok
+kubectl delete -f $KUBE_DEPLOY_BASE_PATH/cert-manager/test-cert-manager.yaml
+
+# Let's encrypt issuer staging
+kubectl apply -f $KUBE_DEPLOY_BASE_PATH/cluster-issuer/staging
+
+# Update Service ingress
+kubectl apply -f $KUBE_DEPLOY_BASE_PATH/ingress/service-ingress.yaml
+
+# Check cert
+kubectl describe certificate letsencrypt-staging --namespace $KUBE_NAMESPACE
+# kubectl --namespace $KUBE_NAMESPACE describe certificaterequest [letsencrypt-staging-3376255093] 
+
+# Check orders
+kubectl --namespace $KUBE_NAMESPACE describe orders
+
+# Check challenges
+kubectl get challenges --namespace $KUBE_NAMESPACE
+# kubectl --namespace $KUBE_NAMESPACE describe challenge letsencrypt-staging-3376255093-3425677048-1267864671 
+
+# Bug?
+# kubectl apply -f $KUBE_DEPLOY_BASE_PATH/ingress/updated-nginx-ingress.yaml
+
+# DESTROY
+kubectl delete namespace $KUBE_NAMESPACE
+kubectl delete namespace ingress-nginx
