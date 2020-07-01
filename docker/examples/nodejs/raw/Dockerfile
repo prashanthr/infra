@@ -4,7 +4,7 @@ FROM node:current
 LABEL version="version"
 LABEL name="demo-app"
 LABEL description="This is an image for the demo-app"
-LABEL maintainer "Prashanth R <https://github.com/prashanthr>"
+LABEL maintainer "Author <https://github.com/author>"
 # OS Upgrades & Dependencies
 RUN apt-get update && apt-get dist-upgrade -y
 RUN apt-get install apt-utils -y && apt-get install net-tools vim curl -y 
