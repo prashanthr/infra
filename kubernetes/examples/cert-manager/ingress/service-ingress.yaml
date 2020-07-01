@@ -10,10 +10,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - comical.site
+    - demo.site
     secretName: letsencrypt-staging
   rules:
-  - host: comical.site
+  - host: demo.site
     http:
       paths:
       - backend:

@@ -6,13 +6,13 @@
 # spec:
 #   secretName: comical-site-tls
 #   dnsNames:
-#   - comical.site
+#   - demo.site
 #   acme:
 #     config:
 #     - http01:
 #         ingressClass: nginx
 #       domains:
-#       - comical.site
+#       - demo.site
 #   issuerRef:
 #     name: letsencrypt-staging
 #     kind: ClusterIssuer

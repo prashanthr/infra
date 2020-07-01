@@ -18,7 +18,7 @@ metadata:
   namespace: cert-manager-test
 spec:
   dnsNames:
-    - comical.site
+    - demo.site
   secretName: selfsigned-cert-tls
   issuerRef:
     name: test-selfsigned
