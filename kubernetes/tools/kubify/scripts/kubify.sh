@@ -40,9 +40,9 @@ for directory in $(find $TARGET_DIR -type d);
           echo "Replacing known occurrences..."
           replaceOccurence __K8_APP_NAMESPACE__ $K8_APP_NAMESPACE $file
           replaceOccurence __K8_APP_NAME__ $K8_APP_NAME $file
-          replaceOccurence __K8_APP_IMAGE__ $K8_APP_IMAGE $file
+          replaceOccurence __K8_APP_IMAGE__ "$K8_APP_IMAGE" $file
           replaceOccurence __K8_APP_PORT__ $K8_APP_PORT $file
-          if [ $K8_APP_SSL = "TRUE" ]; then
+          if [[ $K8_APP_SSL == "TRUE" ]]; then
             replaceOccurence "  #" " " $file
           fi
         fi
