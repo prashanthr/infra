@@ -14,7 +14,7 @@
 # DOCKER_IMAGE_VERSION=latest \
 # DOCKER_IMAGE_NAME=test \
 # DOCKER_IMAGE_DESCRIPTION="test description" \
-# DOCKER_IMAGE_MAINTAINER="author" \
+# DOCKER_IMAGE_MAINTAINER="author \<http\:\/\/github.com/author\>" \
 # DOCKER_PORT=9000 \
 # ./scripts/dockify.sh
 
@@ -44,7 +44,7 @@ for directory in $(find $TARGET_DIR -type d);
           replaceOccurence __DOCKER_IMAGE_VERSION__ $DOCKER_IMAGE_VERSION $file
           replaceOccurence __DOCKER_IMAGE_NAME__ $DOCKER_IMAGE_NAME $file
           replaceOccurence __DOCKER_IMAGE_DESCRIPTION__ "$DOCKER_IMAGE_DESCRIPTION" $file
-          replaceOccurence __DOCKER_IMAGE_MAINTAINER__ $DOCKER_IMAGE_MAINTAINER $file
+          replaceOccurence __DOCKER_IMAGE_MAINTAINER__ "$DOCKER_IMAGE_MAINTAINER" $file
           if [ -z $DOCKER_WORKDIR ]; then
             DOCKER_WORKDIR="\/var\/www\/deploy\/app\/"
           fi
