@@ -24,7 +24,7 @@ RUN yarn --${NODE_ENV}
 # Install App Dependencies
 COPY . ${WORK_DIR}
 # Build the front end assets
-RUN yarn build-app
+RUN yarn build
 # Install other deps
 RUN apt-get install apt-transport-https lsb-release ca-certificates nginx net-tools vim -y
 # Check versions

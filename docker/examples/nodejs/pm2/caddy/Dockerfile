@@ -25,7 +25,7 @@ COPY . ${WORK_DIR}
 # List for confirmation
 RUN ls -altr ${WORK_DIR}
 # Build the front end assets
-RUN yarn build-app
+RUN yarn build
 
 # Caddy
 FROM caddy/caddy:alpine

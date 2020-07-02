@@ -24,7 +24,7 @@ RUN yarn --${NODE_ENV}
 # Install App Dependencies
 COPY . ${WORK_DIR}
 # Build the front end assets
-RUN yarn build-app
+RUN yarn build
 # Run application
 CMD ["npm", "run", "start"]
 # Expose port
