@@ -1,0 +1,8 @@
+# Echo
+kubectl apply -f $KUBE_DEPLOY_BASE_PATH/echo/namespace.yaml
+kubectl apply -f $KUBE_DEPLOY_BASE_PATH/echo/deployment.yaml
+kubectl --namespace echo get services
+# Real deal
+kubectl apply -f $KUBE_DEPLOY_BASE_PATH/namespace
+kubectl apply -f $KUBE_DEPLOY_BASE_PATH/deployment
+kubectl --namespace $KUBE_NAMESPACE get services

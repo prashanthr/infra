@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  namespace: comical-site
-  name: comical-site-app
+  namespace: demo-app
+  name: demo-app
 spec:
   selector:
-    app: comical-site-app
+    app: demo-app
   ports:
   - port: 80
     targetPort: 9000
@@ -13,20 +13,20 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: comical-site
-  name: comical-site-app
+  namespace: demo-app
+  name: demo-app
 spec:
   selector:
     matchLabels:
-      app: comical-site-app
+      app: demo-app
   replicas: 1
   template:
     metadata:
       labels:
-        app: comical-site-app
+        app: demo-app
     spec:
       containers:
-      - name: comical-site-app
+      - name: demo-app
         image: prequod/inspire-me:latest
         imagePullPolicy: Always
         ports:

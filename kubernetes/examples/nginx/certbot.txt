@@ -1,0 +1,29 @@
+# --server $CERTBOT_SERVER
+
+#certbot certonly -n --agree-tos --redirect --staging -d example.site --email [MY_EMAIL] --webroot --webroot-path /var/www/deploy/app/build
+
+# This one works and configures ssl
+certbot --authenticator webroot --installer nginx -n --agree-tos --redirect --staging -d example.site --email [MY_EMAIL] --webroot-path /var/www/deploy/app/build
+
+```
+root@demo-app-859c8bfb8f-m4486:/var/www/deploy/app/build/.well-known/acme-challenge# certbot certonly -n --agree-tos --redirect --staging -d example.site --email [MY_EMAIL] --webroot --webroot-path /var/www/deploy/app/build
+Saving debug log to /var/log/letsencrypt/letsencrypt.log
+Plugins selected: Authenticator webroot, Installer None
+Obtaining a new certificate
+Performing the following challenges:
+http-01 challenge for example.site
+Using the webroot path /var/www/deploy/app/build for all unmatched domains.
+Waiting for verification...
+Cleaning up challenges
+
+IMPORTANT NOTES:
+ - Congratulations! Your certificate and chain have been saved at:
+   /etc/letsencrypt/live/example.site/fullchain.pem
+   Your key file has been saved at:
+   /etc/letsencrypt/live/example.site/privkey.pem
+   Your cert will expire on 2020-09-24. To obtain a new or tweaked
+   version of this certificate in the future, simply run certbot
+   again. To non-interactively renew *all* of your certificates, run
+   "certbot renew"
+
+```
