@@ -4,7 +4,7 @@ FROM node:current
 LABEL version="__DOCKER_IMAGE_VERSION__"
 LABEL name="__DOCKER_IMAGE_NAME__"
 LABEL description="__DOCKER_IMAGE_DESCRIPTION__"
-LABEL maintainer "__DOCKER_IMAGE_MAINTAINER__"
+LABEL maintainer="__DOCKER_IMAGE_MAINTAINER__"
 # OS Upgrades & Dependencies
 RUN apt-get update && apt-get dist-upgrade -y
 RUN apt-get install apt-utils -y && apt-get install net-tools vim curl -y 
