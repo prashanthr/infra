@@ -34,6 +34,12 @@ spec:
       - name: __K8_APP_NAME__
         image: __K8_APP_IMAGE__
         imagePullPolicy: Always
+        env:
+        - name: SECRET_TEST
+          valueFrom:
+            secretKeyRef:
+              name: pandoras-box
+              key: test-secret
         ports:
         - containerPort: __K8_APP_PORT__
           protocol: TCP
