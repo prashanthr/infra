@@ -4,7 +4,7 @@ metadata:
   namespace: __K8_APP_NAMESPACE__
   name: test-cron-job
 spec:
-  concurrencyPolicy: Replace
+  concurrencyPolicy: Forbid
   failedJobsHistoryLimit: 7
   successfulJobsHistoryLimit: 5
   suspend: false
