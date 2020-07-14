@@ -5,4 +5,4 @@ kubectl --namespace $KUBE_NAMESPACE apply -f $SCRIPTS_DIR/../secret
 kubectl --namespace $KUBE_NAMESPACE apply -f $SCRIPTS_DIR/../deployment
 kubectl --namespace $KUBE_NAMESPACE apply -f $SCRIPTS_DIR/../jobs
 kubectl --namespace $KUBE_NAMESPACE get services
-kubectl --namespace $KUBE_NAMESPACE get jobs 
+kubectl --namespace $KUBE_NAMESPACE get jobs
