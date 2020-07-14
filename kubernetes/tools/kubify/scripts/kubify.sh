@@ -13,7 +13,7 @@
 # K8_APP_NAME=test \
 # K8_APP_PORT=7000 \
 # K8_APP_IMAGE="hello\/hello" \
-# ./scripts/create-k8-configs.sh
+# ./scripts/kubify.sh
 
 function replaceOccurence {
     echo "Replacing $1 for $2 in $3"
