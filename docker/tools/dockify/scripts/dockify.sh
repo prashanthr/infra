@@ -1,32 +1,5 @@
 
 #/bin/bash
-# Example usage
-# cd ./docker/tools/dockify
-# 
-# DOCKER_IMAGE_VERSION=latest \
-# DOCKER_IMAGE_NAME=test \
-# DOCKER_IMAGE_DESCRIPTION="test description" \
-# DOCKER_IMAGE_MAINTAINER="author" \
-# DOCKER_WORKDIR="\/var\/www\/deploy\/app\/" \
-# DOCKER_PORT=9000 \
-# ./scripts/dockify.sh
-
-# DOCKER_IMAGE_VERSION=latest \
-# DOCKER_IMAGE_NAME=test \
-# DOCKER_IMAGE_DESCRIPTION="test description" \
-# DOCKER_IMAGE_MAINTAINER="author \<http\:\/\/github.com/author\>" \
-# DOCKER_PORT=9000 \
-# ./scripts/dockify.sh
-
-# APP_LANGUAGE="node" \
-# APP_TYPE="backend" \
-# DOCKER_IMAGE_VERSION=latest \
-# DOCKER_IMAGE_NAME=test \
-# DOCKER_IMAGE_DESCRIPTION="test description" \
-# DOCKER_IMAGE_MAINTAINER="author \<http\:\/\/github.com/author\>" \
-# DOCKER_PORT=9000 \
-# ./scripts/dockify.sh
-
 function replaceOccurence {
     echo "Replacing $1 for $2 in $3"
     local search=$1
@@ -36,12 +9,16 @@ function replaceOccurence {
 }
 
 # Copy template
-if [ -z $LANGUAGE ]; then
+if [ -z $APP_LANGUAGE ]; then
   APP_LANGUAGE="node"
 fi
 
 if [ -z $APP_TYPE ]; then
  APP_TYPE="fullstack"
+fi
+
+if [ -z $APP_NAME ]; then
+ APP_NAME="demo-app"
 fi
 
 SOURCE_PATH=./template/$APP_LANGUAGE/$APP_TYPE/
@@ -68,6 +45,7 @@ for directory in $(find $TARGET_DIR -type d);
           fi
           replaceOccurence __DOCKER_WORKDIR__ "$DOCKER_WORKDIR" $file
           replaceOccurence __DOCKER_PORT__ $DOCKER_PORT $file
+          replaceOccurence __DOCKER_APP_NAME__ $APP_NAME $file
         fi
       done
     fi
