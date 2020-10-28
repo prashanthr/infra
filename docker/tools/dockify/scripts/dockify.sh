@@ -41,7 +41,7 @@ for directory in $(find $TARGET_DIR -type d);
           replaceOccurence __DOCKER_IMAGE_DESCRIPTION__ "$DOCKER_IMAGE_DESCRIPTION" $file
           replaceOccurence __DOCKER_IMAGE_MAINTAINER__ "$DOCKER_IMAGE_MAINTAINER" $file
           if [ -z $DOCKER_WORKDIR ]; then
-            DOCKER_WORKDIR="\/var\/www\/deploy\/app\/"
+            DOCKER_WORKDIR="\/var\/www\/deploy\/app"
           fi
           replaceOccurence __DOCKER_WORKDIR__ "$DOCKER_WORKDIR" $file
           replaceOccurence __DOCKER_PORT__ $DOCKER_PORT $file
