@@ -50,7 +50,7 @@ function generateSiteConfig {
 }
 
 
-
+echo "Generating magic from $APPS_CONFIG_PATH..."
 for row in $(cat $APPS_CONFIG_PATH | jq -c '.[]'); do
   generateSiteConfig $row
 done
