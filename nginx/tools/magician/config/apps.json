@@ -1,0 +1,11 @@
+[{
+  "name": "app-1",
+  "port": "9000",
+  "dns": "1.example.com",
+  "https": false
+}, {
+  "name": "app-2",
+  "port": "9001",
+  "dns": "2.example.com",
+  "https": false
+}]
