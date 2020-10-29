@@ -1,2 +1,3 @@
 kubernetes/tools/kubify/output
 docker/tools/dockify/output
+nginx/tools/magician/output
