@@ -5,6 +5,6 @@ CFG_PATH=./config
 NGINX_PATH=/etc/nginx
 
 cp -r $CFG_PATH/*.lua $NGINX_PATH/sites-available
-for cfgFile in $CFG_PATH; do
+for cfgFile in $CFG_PATH/*.lua; do
   sudo ln -s $NGINX_PATH/sites-available/$cfgFile $NGINX_PATH/sites-enabled/
 done
