@@ -46,7 +46,7 @@ function generateSiteConfig {
     }
     app_name=$(_jq '.name')
     app_dns=$(_jq '.dns')
-    app_port=$(_jq '.port')
+    host_port=$(_jq '.hostPort')
     app_https=$(_jq '.https')
     
     echo "Generating site config for: $app_name"
@@ -56,7 +56,7 @@ function generateSiteConfig {
     
     replaceOccurence __SERVER_PORT__ $SERVER_PORT $OUTPUT_FILE_PATH
     replaceOccurence __APP_DNS_NAME__ $app_dns $OUTPUT_FILE_PATH
-    replaceOccurence __APP_PORT__ $app_port $OUTPUT_FILE_PATH
+    replaceOccurence __APP_PORT__ $host_port $OUTPUT_FILE_PATH
 }
 
 function generateSiteDockerScript {
@@ -66,11 +66,13 @@ function generateSiteDockerScript {
   }
   app_name=$(_jq '.name')
   app_image=$(_jq '.image')
+  app_port=$(_jq '.port')
+  host_port=$(_jq '.hostPort')
 
   echo "Generating site docker cmd for: $app_name"
   echo -e "echo \"Running $app_name...\"" >> $APP_DOCKER_OUTPUT_PATH
   echo "docker rm $app_name" >> $APP_DOCKER_OUTPUT_PATH
-  echo "docker run --publish $app_port:$app_port --detach --name $app_name $app_image" >> $APP_DOCKER_OUTPUT_PATH
+  echo "docker run --publish $host_port:$app_port --detach --name $app_name $app_image" >> $APP_DOCKER_OUTPUT_PATH
 }
 
 setup
@@ -79,3 +81,4 @@ for row in $(cat $APPS_CONFIG_PATH | jq -c '.[]'); do
   generateSiteConfig $row
   generateSiteDockerScript $row
 done
+echo "Run the ./scripts/playbook.sh script on the target machine and you're good to go!"
