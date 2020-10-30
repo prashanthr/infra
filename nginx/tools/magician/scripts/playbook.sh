@@ -3,4 +3,5 @@
 ./scripts/setup-docker.sh
 ./scripts/setup-nginx.sh
 ./scripts/setup-apps.sh
-./scripts/boot-ngix.sh
+./scripts/copy-app-configs.sh
+./scripts/boot-nginx.sh
