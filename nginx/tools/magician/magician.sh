@@ -57,6 +57,10 @@ function generateSiteConfig {
     replaceOccurence __SERVER_PORT__ $SERVER_PORT $OUTPUT_FILE_PATH
     replaceOccurence __APP_DNS_NAME__ $app_dns $OUTPUT_FILE_PATH
     replaceOccurence __APP_PORT__ $host_port $OUTPUT_FILE_PATH
+    replaceOccurence __SERVER_PORT_HTTPS__ 443 $OUTPUT_FILE_PATH
+    if [ $app_https = "true" ]; then
+      replaceOccurence '#' '' $OUTPUT_FILE_PATH
+    fi
 }
 
 function generateSiteDockerScript {
