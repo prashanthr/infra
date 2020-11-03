@@ -9,5 +9,6 @@ cp -r $CFG_PATH/*.lua $SITES_AVAILABLE_PATH
 for file in $CFG_PATH/*.lua; do
   cfgFile=$(basename $file)
   echo "Creating symlink for $SITES_AVAILABLE_PATH/$cfgFile at $SITES_ENABLED_PATH/$cfgFile..."
+  rm $SITES_ENABLED_PATH/$cfgFile
   sudo ln -s $SITES_AVAILABLE_PATH/$cfgFile $SITES_ENABLED_PATH/$cfgFile
 done
