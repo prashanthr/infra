@@ -2,6 +2,6 @@
 ./scripts/setup-workspace.sh
 ./scripts/setup-docker.sh
 ./scripts/setup-nginx.sh
-./scripts/setup-apps.sh
-./scripts/copy-app-configs.sh
+./scripts/cleanup-docker.sh
+./scripts/install-apps.sh
 ./scripts/boot-nginx.sh

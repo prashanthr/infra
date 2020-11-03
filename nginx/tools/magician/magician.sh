@@ -81,4 +81,6 @@ for row in $(cat $APPS_CONFIG_PATH | jq -c '.[]'); do
   generateSiteConfig $row
   generateSiteDockerScript $row
 done
-echo "Run the ./scripts/playbook.sh script on the target machine and you're good to go!"
+
+echo "For brand new installations, run the ./scripts/playbook.sh script on the target machine and you're good to go!"
+echo "For patching/updating/adding apps, run ./scripts/install-apps.sh && ./scripts/boot-nginx.sh script on the target machine and you're good to go!"
