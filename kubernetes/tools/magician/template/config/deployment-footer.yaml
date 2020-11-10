@@ -1,20 +1,3 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  namespace: __K8_APP_NAMESPACE__
-  name: __K8_APP_DOCKER_NAME__
-spec:
-  selector:
-    matchLabels:
-      app: __K8_APP_DOCKER_NAME__
-  replicas: 1
-  template:
-    metadata:
-      labels:
-        app: __K8_APP_DOCKER_NAME__
-    spec:
-      containers: 
-        __K8_APP_CONTAINERS__
         - name: dind-daemon 
           image: docker:18.09.0-dind
           resources: 
