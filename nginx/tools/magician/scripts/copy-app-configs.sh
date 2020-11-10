@@ -1,5 +1,5 @@
 
-#/bin/bash
+#!/bin/bash
 CFG_PATH=./config
 NGINX_PATH=/etc/nginx
 SITES_AVAILABLE_PATH=$NGINX_PATH/sites-available

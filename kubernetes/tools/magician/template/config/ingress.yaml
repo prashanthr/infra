@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  namespace: __K8_APP_NAMESPACE__
+  name: ingress-__K8_APP_NAME__
+  annotations:
+    # use the shared ingress-nginx
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+  - host: __K8_APP_DNS__
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: __K8_APP_NAME__
+          servicePort: __K8_APP_HOST_PORT__

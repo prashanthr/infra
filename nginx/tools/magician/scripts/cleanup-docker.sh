@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 echo "Currently running containers..."
 docker ps -aq
 echo "Stopping and removing all containers..."

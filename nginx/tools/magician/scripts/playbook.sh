@@ -1,5 +1,5 @@
-#/bin/bash
-./scripts/setup-workspace.sh
+#!/bin/bash
+./scripts/pre-reqs.sh
 ./scripts/setup-docker.sh
 ./scripts/setup-nginx.sh
 ./scripts/cleanup-docker.sh
