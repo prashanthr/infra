@@ -46,3 +46,5 @@ K8_DOCKER_APP_NAME=dind \
 2. Setup secrets as needed using the `output/config/secrets.yaml` and update `output/config/deployment.yaml` for the respective container and redeploy
 
 3. test by curl-ing domains on both http and https and you're good to go!
+
+4. Enable any other DO Load balancer settings as needed
