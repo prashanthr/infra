@@ -31,9 +31,11 @@ function setup {
   cp -r $SCRIPTS_PATH/ $OUTPUT_PATH/scripts
   # Only copy files that don't need replacements
   cp $TEMPLATE_PATH/nginx.yaml $OUTPUT_PATH/config
-  # Handle namespace
+  # For files that need replacements, copy and replace
   cp $TEMPLATE_PATH/namespace.yaml $OUTPUT_PATH/config
+  cp $TEMPLATE_PATH/secrets.yaml $OUTPUT_PATH/config
   replaceOccurence __K8_APP_NAMESPACE__ $K8_APP_NAMESPACE $OUTPUT_PATH/config/namespace.yaml
+  replaceOccurence __K8_APP_NAMESPACE__ $K8_APP_NAMESPACE $OUTPUT_PATH/config/secrets.yaml
 }
 
 function generateSiteConfig {

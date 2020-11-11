@@ -7,7 +7,9 @@ spec:
   ports:
   - port: 80
     targetPort: __K8_APP_HOST_PORT__
+    name: http
   - port: 443
     targetPort: __K8_APP_HOST_PORT__
+    name: https
   selector:
     app: __K8_DOCKER_APP_NAME__
