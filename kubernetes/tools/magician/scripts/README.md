@@ -32,3 +32,17 @@ K8_APP_NAMESPACE=namespace \
 K8_DOCKER_APP_NAME=dind \
 ./scripts/magician.sh
 ```
+
+
+# Digital Ocean Setup
+
+1. Ensure the load balancer created for the nignx ingress has the following config
+   
+   ```
+    TCP on port 80  -> TCP on port xxxxx
+    HTTPS on port 443 -> HTTPS on port yyyyy # (add the certificate here using DO UI)
+   ```
+
+2. Setup secrets as needed using the `output/config/secrets.yaml` and update `output/config/deployment.yaml` for the respective container and redeploy
+
+3. test by curl-ing domains on both http and https and you're good to go!
