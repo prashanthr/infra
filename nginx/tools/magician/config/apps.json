@@ -3,13 +3,13 @@
   "port": "9000",
   "hostPort": "9001",
   "dns": "1.example.com",
-  "image": "hello-world:latest",
+  "image": "repo\\/image:tag",
   "https": false
 }, {
   "name": "app-2",
   "port": "9000",
   "hostPort": "9002",
   "dns": "2.example.com",
-  "image": "hello-world:latest",
+  "image": "repo\\/image:tag",
   "https": false
 }]
