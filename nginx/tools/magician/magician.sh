@@ -4,7 +4,7 @@ if [ -z $APPS_CONFIG_PATH ]; then
 fi
 
 if [ -z $TEMPLATE_PATH ]; then
-  TEMPLATE_PATH=./nginx-template/site.lua
+  TEMPLATE_PATH=./template/site.lua
 fi
 
 if [ -z $OUTPUT_PATH ]; then
