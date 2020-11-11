@@ -1,0 +1,19 @@
+        - name: docker-__K8_APP_NAME__
+          image: docker:18.09.0
+          imagePullPolicy: Always
+          command: ['/bin/sh']
+          args:
+              - -c
+              - docker run -p __K8_APP_HOST_PORT__:__K8_APP_PORT__ __K8_APP_IMAGE__;
+          resources: 
+              requests: 
+                  cpu: 10m 
+                  memory: 256Mi 
+          env:
+            - name: SECRET_TEST
+              valueFrom:
+                secretKeyRef:
+                  name: pandoras-box
+                  key: test-secret 
+            - name: DOCKER_HOST 
+              value: tcp://localhost:2375

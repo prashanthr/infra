@@ -1,11 +1,9 @@
-#/bin/bash
+#!/bin/bash
 # Docker setup
 # https://docs.docker.com/engine/install/ubuntu/
 echo "Setting up docker..."
 # Remove old docker versions
 sudo apt-get remove docker docker-engine docker.io containerd runc
-# Update
-sudo apt-get update
 # Install using convenience script
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
