@@ -1,0 +1,1 @@
+KUBE_NAMESPACE=__K8_APP_NAMESPACE__ KUBE_APP_NAME=__K8_APP_NAME__ ./scripts/patch.sh
