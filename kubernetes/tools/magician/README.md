@@ -35,7 +35,7 @@ K8_DOCKER_APP_NAME=dind \
 ./scripts/magician.sh
 ```
 
-3. You can now safely view/edit under `./kubernetes/tools/magician/output`. Remember to edit any secrets you need, add any jobs you require and change any configuration settings
+3. You can now safely view/edit under `./kubernetes/tools/magician/output`. Remember to edit any secrets you need, add any jobs you require and change any configuration settings. Ensure that you use `-e ENV_KEY=ENV_VALUE` to forward any secrets to the respective docker app containers in the `docker run ...` command inside `./kubernetes/tools/magician/output/config/deployment/deployment.yaml` before proceeding
 
 4. Finally, you can deploy the files on a kubernetes cluster
    ```
