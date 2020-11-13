@@ -3,6 +3,8 @@ kind: Service
 metadata:
   namespace: __K8_APP_NAMESPACE__
   name: __K8_APP_NAME__
+  annotations:
+    service.beta.kubernetes.io/do-loadbalancer-protocol: "http"
 spec:
   type: LoadBalancer
   selector:

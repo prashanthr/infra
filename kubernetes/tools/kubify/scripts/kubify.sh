@@ -1,20 +1,4 @@
 #/bin/bash
-# Example usage
-# cd ./kubernetes/tools/kubify
-# 
-# K8_APP_NAMESPACE=namespace \
-# K8_APP_NAME=test \
-# K8_APP_PORT=7000 \
-# K8_APP_IMAGE="hello\/hello" \
-# ./scripts/kubify.sh
-
-# K8_APP_SSL=TRUE \
-# K8_APP_NAMESPACE=namespace \
-# K8_APP_NAME=test \
-# K8_APP_PORT=7000 \
-# K8_APP_IMAGE="hello\/hello" \
-# ./scripts/kubify.sh
-
 function replaceOccurence {
     echo "Replacing $1 for $2 in $3"
     local search=$1
