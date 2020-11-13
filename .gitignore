@@ -1,5 +1,6 @@
 kubernetes/tools/kubify/output
 kubernetes/tools/magician/output
+kubernetes/tools/patchy/output
 docker/tools/dockify/output
 nginx/tools/magician/output
 nginx/tools/magician/kubernetes

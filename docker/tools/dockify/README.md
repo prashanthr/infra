@@ -1,6 +1,12 @@
-# Example usage
+# Dockify
+
+This tool will will generate a stock Docker image based on app language and optional custom settings
+
+## USAGE
 
 `cd ./docker/tools/dockify`
+
+Run as follows by using the following examples
 
 ```
 DOCKER_IMAGE_VERSION=latest \
@@ -36,3 +42,5 @@ DOCKER_IMAGE_MAINTAINER="author \<http\:\/\/github.com\/author\>" \
 DOCKER_PORT=9000 \
 ./scripts/dockify.sh
 ```
+
+Find your output docker files and scripts in the `./docker/tools/dockify/output` folder.
