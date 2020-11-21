@@ -442,7 +442,8 @@ webhooks:
           - UPDATE
         resources:
           - ingresses
-    failurePolicy: Fail
+    # Setting to Ignore instead of Fail will allow for seamless cluster upgrades to avoid dependency problems
+    failurePolicy: Ignore
     sideEffects: None
     admissionReviewVersions:
       - v1
