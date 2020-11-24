@@ -89,6 +89,34 @@ function handleDeployment {
   replaceOccurence __K8_DOCKER_APP_DNS__ $app_dns $deployment_file
 }
 
+function handleDeploymentSecrets {
+   echo "Handling secrets..."
+    siteCfg=$1
+    local app_name=$(echo "$siteCfg" | jq -r '.name')
+    local app_secrets=$(echo "$siteCfg" | jq '.envSecrets')
+    local secrets_length=$(echo "$siteCfg" | jq '.envSecrets | keys | length')
+    local target_deployment_file=$OUTPUT_PATH/config/${app_name}-deployment-container.yaml
+    if [[ $secrets_length != "0" ]]; then
+      echo "$app_name has $secrets_length secrets"
+      echo "$siteCfg" | jq -r '.envSecrets | to_entries | map(.key + "|" + (.value | tostring)) | .[]' | \
+        while IFS='|' read key value; do
+          secret_file_name=deployment-container-secrets.yaml
+          target_secret_file=$OUTPUT_PATH/config/${app_name}-$secret_file_name
+          cp $TEMPLATE_PATH/$secret_file_name $target_secret_file
+          replaceOccurence __K8_APP_SECRET_ENV_NAME__ $key $target_secret_file
+          replaceOccurence __K8_APP_SECRET_KEY__ $value $target_secret_file
+          cat $target_secret_file >> $target_deployment_file
+          rm $target_secret_file
+        done
+      local docker_env=$(echo "$siteCfg" | jq -r '.envSecrets | to_entries|map("-e \(.key)=\(.key) ")|.[]')
+      docker_env=${docker_env//[$'\r\n']} # remove newlines
+      replaceOccurence __K8_APP_ENV__ "$docker_env" $target_deployment_file
+    else 
+      echo "$app_name has no secrets"
+      replaceOccurence __K8_APP_ENV__ '' $target_deployment_file
+    fi
+}
+
 function cleanup {
   echo "Cleaning up..."
   mkdir -p $OUTPUT_PATH/config/deployment
@@ -102,8 +130,12 @@ function cleanup {
 
 function parseConfig {
   echo "Generating magic from $APPS_CONFIG_PATH..."
+  local num_apps=$(cat $APPS_CONFIG_PATH | jq -r '. | length')
+  echo -e "Found $num_apps apps\n"
   for row in $(cat $APPS_CONFIG_PATH | jq -c '.[]'); do
     generateSiteConfig $row
+    handleDeploymentSecrets $row
+    echo -e "\n"
   done
   handleDeployment
 }
