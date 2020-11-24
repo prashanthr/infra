@@ -4,6 +4,9 @@
   "hostPort": "9001",
   "dns": "1.example.com",
   "image": "repo\\/image:tag",
+  "envSecrets": {
+    "MY_SECRET_ENV": "my-secret-key-ref-value"
+  },
   "https": false
 }, {
   "name": "app-2",
@@ -11,5 +14,6 @@
   "hostPort": "9002",
   "dns": "2.example.com",
   "image": "repo\\/image:tag",
+  "envSecrets": {},
   "https": false
 }]
