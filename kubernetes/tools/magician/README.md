@@ -1,6 +1,6 @@
 # Magician
 
-This script will provide you with a deployable kubernetes configuration for a suite of apps using either a standard (single nginx ingress backed by services) or docker-in-docker (dind) style architecture with an nginx ingress controller, and a deployment plus ingress service for each app. You can also manage secrets for the namespace. Think of this as traditional multi domain nginx apps in Kubernetes.
+This script will provide you with a deployable kubernetes configuration for a suite of apps using either a standard (single nginx ingress backed by services) or docker-in-docker (dind) style architecture with an nginx ingress controller, and a deployment plus ingress service for each app. You can also manage secrets for the namespace and each deployment. Think of this as traditional multi domain nginx apps in Kubernetes.
 
 ## USAGE
 
@@ -9,21 +9,25 @@ This script will provide you with a deployable kubernetes configuration for a su
 1) Edit ./config/apps.json for the list of apps your want to setup
 
   ```
-  [{
+ [{
     "name": "app-1",
     "port": "9000",
     "hostPort": "9001",
     "dns": "1.example.com",
-    "image": "hello-world:latest",
+    "image": "repo\\/image:tag",
+    "envSecrets": {
+      "MY_SECRET_ENV": "my-secret-key-ref-value"
+    },
     "https": false
   }, {
     "name": "app-2",
     "port": "9000",
     "hostPort": "9002",
     "dns": "2.example.com",
-    "image": "hello-world:latest",
+    "image": "repo\\/image:tag",
+    "envSecrets": {},
     "https": false
-  }]
+}]
 
   ```
 
