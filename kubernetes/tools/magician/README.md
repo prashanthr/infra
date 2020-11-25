@@ -34,10 +34,13 @@ This script will provide you with a deployable kubernetes configuration for a su
 2. Run the script with minimal params
 
 ```
+# By default this will result in a standard deployment
 K8_APP_NAMESPACE=namespace \
 K8_DOCKER_APP_NAME=dind \
 ./scripts/magician.sh
 ```
+
+OR
 
 ```
 # DEPLOYMENT_STYLE can be "std" (default) or "dind"
