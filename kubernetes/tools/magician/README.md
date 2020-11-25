@@ -1,6 +1,6 @@
 # Magician
 
-This script will provide you with a deployable kubernetes configuration for a suite of apps using docker-in-docker (dind) style architecture with an nginx ingress controller, and a deployment plus ingress service for each app. You can also manage secrets for the namespace. Think of this as traditional multi domain nginx apps in Kubernetes.
+This script will provide you with a deployable kubernetes configuration for a suite of apps using either a standard (single nginx ingress backed by services) or docker-in-docker (dind) style architecture with an nginx ingress controller, and a deployment plus ingress service for each app. You can also manage secrets for the namespace. Think of this as traditional multi domain nginx apps in Kubernetes.
 
 ## USAGE
 
@@ -30,6 +30,14 @@ This script will provide you with a deployable kubernetes configuration for a su
 2. Run the script with minimal params
 
 ```
+K8_APP_NAMESPACE=namespace \
+K8_DOCKER_APP_NAME=dind \
+./scripts/magician.sh
+```
+
+```
+# DEPLOYMENT_STYLE can be "std" (default) or "dind"
+DEPLOYMENT_STYLE="dind"
 K8_APP_NAMESPACE=namespace \
 K8_DOCKER_APP_NAME=dind \
 ./scripts/magician.sh
