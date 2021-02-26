@@ -4,7 +4,10 @@ metadata:
   namespace: __K8_APP_NAMESPACE__
   name: __K8_APP_NAME__
   annotations:
+    # Digital Ocean Settings
     service.beta.kubernetes.io/do-loadbalancer-protocol: "http"
+    # service.beta.kubernetes.io/do-loadbalancer-certificate-id: YOUR-CERT-ID
+    # service.beta.kubernetes.io/do-loadbalancer-redirect-http-to-https: "true"
 spec:
   type: LoadBalancer
   selector:
@@ -13,9 +16,9 @@ spec:
   - port: 80
     name: http
     targetPort: __K8_APP_PORT__
-  # - port: 443
-  #   name: https
-  #   targetPort: __K8_APP_PORT__
+  - port: 443
+    name: https
+    targetPort: __K8_APP_PORT__
 ---
 apiVersion: apps/v1
 kind: Deployment
