@@ -44,6 +44,8 @@ function generateSiteConfig {
 
     local TARGET_FILE=$OUTPUT_PATH/scripts/patch-apps.sh
     cat $TEMPLATE_PATH >> $TARGET_FILE
+    # insert newline
+    (cat "${f}"; echo) >> $TARGET_FILE
     replaceOccurence __K8_APP_NAMESPACE__ $app_namespace $TARGET_FILE
     replaceOccurence __K8_APP_NAME__ $app_deployment_name $TARGET_FILE
 }
