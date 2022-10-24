@@ -1,4 +1,4 @@
-# Magician
+# Kubify
 
 This script will provide you with a deployable kubernetes configuration for a single application with the support for a deployment, a load balancer service, secrets and jobs.
 
