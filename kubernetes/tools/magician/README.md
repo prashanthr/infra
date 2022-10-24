@@ -61,9 +61,38 @@ K8_DOCKER_APP_NAME=dind \
 
 1. Ensure the load balancer created for the ingress has the following config
    
+   If UI Managed
+   
    ```
-    HTTP on port 80  -> HTTP on port xxxxx
-    HTTPS on port 443 -> HTTPS on port yyyyy # (add the certificate here using the UI)
+    HTTP on port 80 -> HTTP on port xxxxx
+    HTTPS on port 443 -> HTTP on port yyyyy (add the certificate here using the UI)
+   ```
+   
+   If non-UI Managed
+   Ensure your load balancer (nginx ingress controller) has the HTTPS port pointing to the HTTP port
+   
+   `ingress-nginx-controller ingress-nginx LoadBalancer`
+   
+   ```
+    metadata:
+      annotations:
+        service.beta.kubernetes.io/do-loadbalancer-certificate-id: xxxxxxxx
+        service.beta.kubernetes.io/do-loadbalancer-protocol: https
+    ....
+    spec:
+      ports:
+         - name: http
+           protocol: TCP
+           appProtocol: http
+           port: 80
+           targetPort: http
+           nodePort: 32201
+         - name: https
+           protocol: TCP
+           appProtocol: https
+           port: 443
+           targetPort: http
+           nodePort: 32502
    ```
 
 2. Point your domain A records to the load balancer IP
