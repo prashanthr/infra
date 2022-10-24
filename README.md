@@ -8,7 +8,7 @@ Find tools and examples to create your [kubernetes](https://kubernetes.io) deplo
 
 1. [Magician](./kubernetes/tools/magician) - Deploy one or more kubernetes apps to a cluster using a simple config
 2. [Kubify](./kubernetes/tools/kubify) - Deploy a single app to a cluster using a config. Consider using the new magician tool instead of kubify
-3. [Patchy](./kuberenetes/tools/patchy) - Deployments out of date? Use patchy to quick patch your apps without having to redeploy
+3. [Patchy](./kubernetes/tools/patchy) - Deployments out of date? Use patchy to quick patch your apps without having to redeploy
 
 See [examples](./kubernetes/examples)
 
