@@ -4,7 +4,7 @@ Tools and templates to control the world (your tech stack) via handy scripts
 
 ## Kubernetes 
 
-Find tools and examples to create your [kubernetes](https://kubernetes.com) deployments here
+Find tools and examples to create your [kubernetes](https://kubernetes.io) deployments here
 
 1. [Magician](./kubernetes/tools/magician) - Deploy one or more kubernetes apps to a cluster using a simple config
 2. [Kubify](./kubernetes/tools/kubify) - Deploy a single app to a cluster using a config. Consider using the new magician tool instead of kubify
